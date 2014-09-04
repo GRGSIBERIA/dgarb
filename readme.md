@@ -14,14 +14,14 @@ I can't insert Danbooru's informations into that databases.
 
 So, I need to switch of the shipment.
 
-Sankaku Watch is that answer for problem.
+Danbooru Watch is that answer for problem.
 
 I thought to create new database format.
 
-Sankaku Watch is API wrapper for crawling on Danbooru Databases.
+Danbooru Watch is API wrapper for crawling on Danbooru Databases.
 
 
-# A Purporse of Sankaku Watch
+# A Purporse of Danbooru Watch
 
 
 
