@@ -27,7 +27,7 @@ Danbooru Watch is API wrapper for crawling on Danbooru Databases.
 
 # Future Prospects
 
-I think Danbooru (and Danbooru System) is integrated P2P technology.
+I think Danbooru is integrated P2P technology.
 
 Danbooru's problem weigh heavily on one retains Crowd Storage.
 
