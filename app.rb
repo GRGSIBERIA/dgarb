@@ -1,3 +1,5 @@
-require "./agent.rb"
+require "./post.rb"
 
-agent = DW::Agent.new
+post = DW::Post.new
+
+puts post.Get().search("article.post-preview").length
