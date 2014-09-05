@@ -1,6 +1,6 @@
+#-*- encoding: utf-8
 require "./post.rb"
-require "booru"
 
 post = DW::Post.new
 
-#puts post.get().body
+puts post.get(limit: 5)
