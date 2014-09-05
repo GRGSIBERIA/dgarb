@@ -8,26 +8,23 @@ module DW
       super
     end
 
-    def _addParam(params, uri, typename, flag)
+    def _addParam(params, typename)
+      uri = ""
       if params.has_key?(typename) then
-        uri += flag ? "&" : "?"
         if typename == :tags then
-          uri += "tags=" + params[:tags].join(" ")
-        else
-          uri += typename.to_s + "=#{params[typename]}"
+          uri = typename.to_s + "=#{params[typename]}"
+          uri += "&"
         end
-        flag = true
       end
-      [uri, flag]
+      uri
     end
 
     def listing(params={})
-      uri = @url + "posts.json"
-      flag = false
-      uri, flag = _addParam(params, uri, :page, flag)
-      uri, flag = _addParam(params, uri, :limit, flag)
-      uri, flag = _addParam(params, uri, :tags, flag)
-      uri, flag = _addParam(params, uri, :raw, flag)
+      uri = @url + "posts.json?"
+      uri +=  addParam(params, :page)
+      uri +=  addParam(params, :limit)
+      uri += _addParam(params, :tags)
+      uri +=  addParam(params, :raw)
 
       JSON::parse(@agent.get(uri).body)
     end
