@@ -1,6 +1,7 @@
 #-*- encoding: utf-8
 require "./post.rb"
+require "./artist.rb"
 
-post = DW::Post.new
+post = DW::Artist.new
 
-puts post.show(1786406)
+puts post.listing(limit: 10, search_is_banned: true)
