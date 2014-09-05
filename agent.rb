@@ -20,13 +20,23 @@ module DW
       if params.has_key?(typename) then
         param_name = typename.to_s
         if param_name.include?("_") then
-          param_name = param_name.gsub("_", "[") + "]"
+          spl = param_name.split("_")
+          param_name = spl[0] + "[" + spl[1]
+          spl.shift
+          spl.shift
+          for x in spl
+            param_name += "_" + x
+          end
+          param_name += "]"
         end
         
         uri += "#{param_name}=#{params[typename]}&"
-        
       end
       uri
+    end
+
+    def getJSON(uri)
+      JSON::parse(@agent.get(uri).body)
     end
 
   end
