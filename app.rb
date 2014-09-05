@@ -3,7 +3,6 @@ require "./post.rb"
 require "./artist.rb"
 require "./pool.rb"
 require "./tag.rb"
-
-post = DW::Artist.new
-
-puts post.listing(limit: 10, search_is_banned: true)
+require "./tag_alias.rb"
+require "./tag_implication.rb"
+require "./related_tag.rb"
