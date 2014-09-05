@@ -30,9 +30,7 @@ module DW
     end
 
     def show(id)
-      uri = @url + "posts/#{id}.json"
-      
-      getJSON(uri)
+      showID("posts", id)
     end
 
   end

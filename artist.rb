@@ -22,5 +22,9 @@ module DW
       uri += addParam(params, :search_empty_only)
       getJSON(uri)
     end
+
+    def show(id)
+      showID("artists", id)
+    end
   end
 end

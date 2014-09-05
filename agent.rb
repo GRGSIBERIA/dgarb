@@ -39,6 +39,11 @@ module DW
       JSON::parse(@agent.get(uri).body)
     end
 
+    def showID(apiName, id)
+      uri = @url + "#{apiName}/#{id}.json"
+      getJSON(uri)
+    end
+
   end
 
 end
