@@ -21,7 +21,7 @@ module DW
       [uri, flag]
     end
 
-    def get(params={})
+    def listing(params={})
       uri = @url + "posts.json"
       flag = false
       uri, flag = _addParam(params, uri, :page, flag)
