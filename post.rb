@@ -6,7 +6,6 @@ module DW
   class Post < Agent
     def initialize()
       super
-      @api_type = "posts.json"
     end
 
     def _addParam(params, uri, typename, flag)
@@ -23,13 +22,18 @@ module DW
     end
 
     def get(params={})
-      uri = @url + @api_type
+      uri = @url + "posts.json"
       flag = false
       uri, flag = _addParam(params, uri, :page, flag)
       uri, flag = _addParam(params, uri, :limit, flag)
       uri, flag = _addParam(params, uri, :tags, flag)
       uri, flag = _addParam(params, uri, :raw, flag)
 
+      JSON::parse(@agent.get(uri).body)
+    end
+
+    def show(id)
+      uri = @url + "posts/#{id}.json"
       JSON::parse(@agent.get(uri).body)
     end
 

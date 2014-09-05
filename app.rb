@@ -3,4 +3,4 @@ require "./post.rb"
 
 post = DW::Post.new
 
-puts post.get(limit: 5)
+puts post.show(1786406)
