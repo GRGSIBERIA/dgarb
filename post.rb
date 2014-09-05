@@ -12,7 +12,7 @@ module DW
       uri = ""
       if params.has_key?(typename) then
         if typename == :tags then
-          uri = typename.to_s + "=#{params[typename]}"
+          uri = typename.to_s + "=#{params[:tags]}"
           uri += "&"
         end
       end
@@ -25,7 +25,6 @@ module DW
       uri +=  addParam(params, :limit)
       uri += _addParam(params, :tags)
       uri +=  addParam(params, :raw)
-
       getJSON(uri)
     end
 

@@ -13,7 +13,15 @@ module DW
     end
 
     def listing(params={})
-
+      uri = @url + "pools.json?"
+      uri += addParams(params, :search_name_matches)
+      uri += addParams(params, :search_description_matches)
+      uri += addParams(params, :search_creator_name)
+      uri += addParams(params, :search_creator_id)
+      uri += addParams(params, :search_is_active)
+      uri += addParams(params, :search_order)
+      uri += addParams(params, :search_category)
+      getJSON(uri)
     end
   end
 end
