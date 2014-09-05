@@ -1,6 +1,8 @@
 #-*- encoding: utf-8
 require "./post.rb"
 require "./artist.rb"
+require "./pool.rb"
+require "./tag.rb"
 
 post = DW::Artist.new
 

@@ -12,7 +12,11 @@ module DW
       uri = ""
       if params.has_key?(typename) then
         if typename == :tags then
-          uri = typename.to_s + "=#{params[:tags]}"
+          if params[typename].class == "array" then
+            uri = typename.to_s + "=#{params[typename].join(" ")}"
+          else
+            uri = typename.to_s + "=#{params[typename]}"
+          end
           uri += "&"
         end
       end
