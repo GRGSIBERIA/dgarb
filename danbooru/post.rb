@@ -1,5 +1,5 @@
 #-*- encoding: utf-8
-require "./agent"
+require "./danbooru/agent"
 
 module DW
 

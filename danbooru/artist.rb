@@ -1,6 +1,6 @@
 #-*- encoding: utf-8
 
-require "./agent.rb"
+require "./danbooru/agent.rb"
 
 module DW
   class Artist < Agent
