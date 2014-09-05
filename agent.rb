@@ -15,6 +15,20 @@ module DW
       @agent.user_agent_alias = 'Windows Mozilla'
     end
 
+    def addParam(params, typename)
+      uri = ""
+      if params.has_key?(typename) then
+        param_name = typename.to_s
+        if param_name.include?("_") then
+          param_name = param_name.gsub("_", "[") + "]"
+        end
+        
+        uri += "#{param_name}=#{params[typename]}&"
+        
+      end
+      uri
+    end
+
   end
 
 end
