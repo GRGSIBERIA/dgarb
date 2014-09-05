@@ -6,7 +6,7 @@ module DW
   class Post < Agent
     def initialize()
       super
-      @api_type = "post.json"
+      @api_type = "posts.json"
     end
 
     def _addParam(params, uri, typename, flag)
@@ -30,7 +30,7 @@ module DW
       uri, flag = _addParam(params, uri, :tags, flag)
       uri, flag = _addParam(params, uri, :raw, flag)
 
-      @agent.get(uri)
+      JSON::parse(@agent.get(uri).body)
     end
 
   end
