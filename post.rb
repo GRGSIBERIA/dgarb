@@ -26,12 +26,13 @@ module DW
       uri += _addParam(params, :tags)
       uri +=  addParam(params, :raw)
 
-      JSON::parse(@agent.get(uri).body)
+      getJSON(uri)
     end
 
     def show(id)
       uri = @url + "posts/#{id}.json"
-      JSON::parse(@agent.get(uri).body)
+      
+      getJSON(uri)
     end
 
   end
