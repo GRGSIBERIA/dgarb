@@ -15,8 +15,12 @@ Danbooruによって管理されているタグ情報を，手元の画像へ反
 このシステムによって，タグ情報の代わりにフォルダで管理するような手間を省き，なおかつPicasaの強力な画像検索機能を利用することが可能となります．
 
 # 動作環境
-画像の変換にRMagicを利用しています．
+画像の変換にRMagicとMiniExiftoolを利用しています．
 RMagickはgemでインストール出来ないため，下記を参照してください．
 
 [RMagic を Windows 7 にインストールする方法](http://www.ownway.info/Ruby/index.php?rmagick%2Fhowtoinstall%2Fwindows)
 
+また，MiniExiftoolもExifToolが必要なので，下記を参照してください．
+なお，System32にExifToolをインストールするとエラーが出るため，他のフォルダへ移してパスを通してください．
+
+[Installing ExifTool](http://www.sno.phy.queensu.ca/~phil/exiftool/install.html#Windows)
