@@ -1,9 +1,6 @@
 #-*- encoding: utf-8
 
 require "rmagick"
-require "mini_exiftool"
-require "kconv"
-require "pp"
 
 module DW
   module Image
@@ -30,18 +27,14 @@ module DW
     end
 
     def AppendTags(path, tags)
-      image = MiniExiftool.new(path)
-      total_tags = image["xpkeywords"] + ";"
+      total_tags = tags.join(", ")
 
-      for tag in tags
-         total_tags += tag + ";"
+      result = system("exiftool #{path} -Keywords=\"#{total_tags}\"")
+
+      if not result then
+        puts "Failed Append Tags: #{total_tags}"
       end
-
-      total_tags = total_tags
-      image["xpkeywords"] = total_tags
-      image["keywords"] = total_tags
-      image["lastkeywordxmp"] = total_tags
-      image.save!
+      return result
     end
 
     module_function :AppendTags
@@ -49,5 +42,4 @@ module DW
   end
 end
 
-#image, path = DW::Image::Rename("C:\\Users\\Eiichi\\Pictures\\2014-09-06\\test.png")
-DW::Image::AppendTags("C:\\Users\\Eiichi\\Pictures\\2014-09-06\\test.jpg", ["ほげ", "ぷよ"])
+DW::Image::AppendTags("C:\\Users\\Eiichi\\Pictures\\2014-09-06\\test.jpg", ["hoge", "puyo", "山田", "高山"])
