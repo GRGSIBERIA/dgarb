@@ -40,4 +40,17 @@ module DGrab
 
   end
 
+  module Post
+    def listing(params={})
+      json = DGrab.Agent.Post.new.listing(params)
+    end
+
+    def show(id)
+      json = DGrab.Agent.Post.new.show(params)
+    end
+
+    module_function :listing
+    module_function :show
+  end
+
 end

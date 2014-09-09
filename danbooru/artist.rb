@@ -29,4 +29,17 @@ module DGrab
       end
     end
   end
+
+  module Artist
+    def listing(params={})
+      json = DGrab.Agent.Artist.new.listing(params)
+    end
+
+    def show(id)
+      json = DGrab.Agent.Artist.new.show(params)
+    end
+
+    module_function :listing
+    module_function :show
+  end
 end

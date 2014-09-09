@@ -18,4 +18,12 @@ module DGrab
       end
     end
   end
+
+  module TagImplication
+    def listing(params={})
+      json = DGrab.Agent.TagImplication.new.listing(params)
+    end
+
+    module_function :listing
+  end
 end

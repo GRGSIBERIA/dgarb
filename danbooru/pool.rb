@@ -26,4 +26,17 @@ module DGrab
       end
     end
   end
+
+  module Pool
+    def listing(params={})
+      json = DGrab.Agent.Pool.new.listing(params)
+    end
+
+    def show(id)
+      json = DGrab.Agent.Pool.new.show(params)
+    end
+
+    module_function :listing
+    module_function :show
+  end
 end

@@ -24,4 +24,12 @@ module DGrab
       end
     end
   end
+
+  module Tag
+    def listing(params={})
+      json = DGrab.Agent.Tag.new.listing(params)
+    end
+
+    module_function :listing
+  end
 end
