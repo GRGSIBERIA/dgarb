@@ -1,11 +1,11 @@
 #-*- encoding: utf-8
 
-require "./response/instance.rb"
+require "./response/adapter.rb"
 
 module DGrab
   module Response
 
-    class Post > Instance
+    class Post > Adapter
       def initialize(json)
         super(json)
       end
