@@ -15,23 +15,16 @@ Danbooruによって管理されているタグ情報を，手元の画像へ反
 このシステムによって，タグ情報の代わりにフォルダで管理するような手間を省き，なおかつPicasaの強力な画像検索機能を利用することが可能となります．
 
 # 動作環境
-画像の変換にRMagicとMiniExiftoolを利用しています．
+画像の変換にRMagicとExifToolを利用しています．
 また，文字エンコードの変換にNKFを利用しています．
 
-# RMagick
+## RMagick
 RMagickはgemでインストール出来ないため，下記を参照してください．
 
 [RMagic を Windows 7 にインストールする方法](http://www.ownway.info/Ruby/index.php?rmagick%2Fhowtoinstall%2Fwindows)
 
-# MiniExiftool
-MiniExiftoolもExifToolが必要なので，下記を参照してください．
+## ExifTool
+これはgemではないので，下記を参照してください．
 なお，System32にExifToolをインストールするとエラーが出るため，他のフォルダへ移してパスを通してください．
 
 [Installing ExifTool](http://www.sno.phy.queensu.ca/~phil/exiftool/install.html#Windows)
-
-# NKF
-NKFは下記のダウンロードサイトからダウンロードしてください．
-
-[nkf.exe nkf32.dll Windows用](http://www.vector.co.jp/soft/dl/win95/util/se295331.html)
-
-解答すると```vc2005\win32(98,Me,NT,2000,XP,Vista,7)Windows-31J```というディレクトリが見つかります．この中の```nkfwin32.exe```を```nkf.exe```に変更し，System32へ入れるか，パスを通してください．
