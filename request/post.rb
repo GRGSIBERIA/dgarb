@@ -1,5 +1,5 @@
 #-*- encoding: utf-8
-require "./danbooru/agent"
+require "./request/agent"
 
 module DGrab
 

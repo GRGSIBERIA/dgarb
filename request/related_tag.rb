@@ -1,6 +1,6 @@
 #-*- encoding: utf-8
 
-require "./danbooru/agent.rb"
+require "./request/agent.rb"
 
 module DGrab
   class RelatedTag < Agent
