@@ -4,12 +4,16 @@ module DGrab
 
   class << self
 
-    def listing(c, params)
-      c.new.listing(params)
+    def listing(cls)
+      def cls.listing(params={})
+        json = self.new.listing(params)
+      end
     end
 
-    def show(c, id)
-      c.new.show(id)
+    def show(cls)
+      def cls.show(id)
+        json = self.new.show(id)
+      end
     end
 
   end

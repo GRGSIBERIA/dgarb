@@ -2,4 +2,4 @@
 
 require "./danbooru/danbooru.rb"
 
-DGrab::Post.show(1)
+puts DGrab::Post.show(1)
