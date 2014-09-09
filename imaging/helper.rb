@@ -8,7 +8,7 @@ module DW
   module Image
 
     # 読み込んだファイルをJPEGに変換する
-    # @params [String] filepath JPEG以外のファイルのパス
+    # @param [String] filepath JPEG以外のファイルのパス
     # @return [String] 新しく生成されたパス
     # @note JPEGが投げられた場合，JPEGのパスを返す
     def Convert(filepath)
@@ -37,7 +37,7 @@ module DW
     end
 
     # 指定したパスのJPEGファイルにタグを追加する
-    # @params [String] path ファイルのパス
+    # @param [String] path ファイルのパス
     # @param [String] tags カンマ区切りで書かれたタグの文字列
     # @param [Array<String>] tags タグの文字列の配列
     # @note 日本語にも対応
