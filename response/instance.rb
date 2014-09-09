@@ -3,11 +3,11 @@
 module DGrab
   module Response
 
-    class Json
+    class Instance
       def initialize(json)
         @json = json
       end
     end
-    
+
   end
 end
