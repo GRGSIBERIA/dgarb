@@ -3,22 +3,39 @@
 module DGrab
   module Response
 
-    # レスポンス受け取りからインスタンス作成
+    # レスポンスを受け取り，インスタンス作成するクラス
     class Adapter
-      def initialize(json)
+      def initialize(json, instance_class)
         @json = json
+        @instance_class
       end
 
-      def first(cls)
-        cls.new(@json.first)
+      # レスポンスの最初の要素を得る
+      # @param [Class] instance_class 対象のクラス型
+      # @return [Class] instance_classと同じ型のオブジェクト
+      def first
+        instance_class.new(@json.first)
       end
 
-      def last(cls)
-        cls.new(@json.first)
+      # レスポンスの最後の要素を得る
+      # @param [Class] instance_class 対象のクラス型
+      # @return [Class] instance_classと同じ型のオブジェクト
+      def last
+        instance_class.new(@json.last)
       end
 
-      def get(cls, i)
-        cls.new(@json[i])
+      # レスポンスを得る
+      # @param [Class] instance_class 対象のクラス型
+      # @param [Integer] i 添字
+      # @return [Class] instance_classと同じ型のオブジェクト
+      def get
+        instance_class.new(@json[i])
+      end
+
+      # レスポンスの長さを得る
+      # @return [Integer] レスポンスの長さ
+      def length
+        @json.length
       end
 
     end

@@ -7,8 +7,9 @@ module DGrab
 
     class Post > Adapter
       def initialize(json)
-        super(json)
+        super(json, DGrab::Instance::Post)
       end
+
     end
 
   end
