@@ -3,23 +3,25 @@
 require "./danbooru/agent.rb"
 
 module DGrab
-  class Tag < Agent
-    def initialize()
-      super
-    end
+  module Agent
+    class Tag < Agent
+      def initialize()
+        super
+      end
 
-    def listing(params={})
-      uri = @url + "tags.json?"
-      uri += addParam(params, :limit)
-      uri += addParam(params, :page)
-      uri += addParam(params, :search_name_matches)
-      uri += addParam(params, :search_category)
-      uri += addParam(params, :search_hide_empty)
-      uri += addParam(params, :search_order)
-      uri += addParam(params, :search_has_wiki)
-      uri += addParam(params, :search_name)
+      def listing(params={})
+        uri = @url + "tags.json?"
+        uri += addParam(params, :limit)
+        uri += addParam(params, :page)
+        uri += addParam(params, :search_name_matches)
+        uri += addParam(params, :search_category)
+        uri += addParam(params, :search_hide_empty)
+        uri += addParam(params, :search_order)
+        uri += addParam(params, :search_has_wiki)
+        uri += addParam(params, :search_name)
 
-      getJSON(uri)
+        getJSON(uri)
+      end
     end
   end
 end
