@@ -22,11 +22,7 @@ module DGrab
       getJSON(uri)
     end
 
-    class << self
-      def listing(params={})
-        json = self.new.listing(params)
-      end
-    end
+    DGrab.listing(self)
 
   end
 

@@ -25,15 +25,8 @@ module DGrab
       getJSON(uri)
     end
 
-    class << self
-      def show(id)
-        json = self.new.show(id)
-      end
-
-      def listing(params={})
-        json = self.new.listing(params)
-      end
-    end
+    DGrab.listing(self)
+    DGrab.show(self)
 
   end
 
