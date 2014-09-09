@@ -9,12 +9,13 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 I_KNOW_THAT_OPENSSL_VERIFY_PEER_EQUALS_VERIFY_NONE_IS_WRONG = nil
 
 module DGrab
-  
+  DANBOORU_URL = "https://danbooru.donmai.us/"
+  AGENT = Mechanize.new
+  AGENT.user_agent_alias = "Windows Mozilla"
+
   class Agent
     def initialize()
-      @url = "http://danbooru.donmai.us/"
-      @agent = Mechanize.new
-      @agent.user_agent_alias = 'Windows Mozilla'
+      
     end
 
     def addParam(params, typename)
@@ -38,11 +39,11 @@ module DGrab
     end
 
     def getJSON(uri)
-      JSON::parse(@agent.get(uri).body)
+      JSON::parse(AGENT.get(uri).body)
     end
 
     def showID(apiName, id)
-      uri = @url + "#{apiName}/#{id}.json"
+      uri = DANBOORU_URL + "#{apiName}/#{id}.json"
       getJSON(uri)
     end
 
