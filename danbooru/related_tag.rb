@@ -3,26 +3,24 @@
 require "./danbooru/agent.rb"
 
 module DGrab
-  module Agent
-    class RelatedTag < Agent
-      def initialize()
-        super
-      end
-
-      def listing(params={})
-        uri = @url + "related_tag.json?"
-        uri += addParams(params, :query)
-        uri += addParams(params, :category)
-        getJSON(uri)
-      end
+  class RelatedTag < Agent
+    def initialize()
+      super
     end
-  end
 
-  module RelatedTag
     def listing(params={})
-      json = DGrab.Agent.RelatedTag.new.listing(params)
+      uri = @url + "related_tag.json?"
+      uri += addParams(params, :query)
+      uri += addParams(params, :category)
+      getJSON(uri)
     end
 
-    module_function :listing
+    class << self
+      def listing(params={})
+        json = self.new.listing(params)
+      end
+    end
+
   end
+
 end
