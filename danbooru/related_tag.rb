@@ -2,7 +2,7 @@
 
 require "./danbooru/agent.rb"
 
-module DW
+module DGrab
   class RelatedTag < Agent
     def initialize()
       super

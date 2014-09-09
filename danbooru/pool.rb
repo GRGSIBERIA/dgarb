@@ -2,7 +2,7 @@
 
 require "./danbooru/agent.rb"
 
-module DW
+module DGrab
   class Pool < Agent
     def initialize()
       super

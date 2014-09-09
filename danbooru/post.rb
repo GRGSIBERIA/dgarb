@@ -1,7 +1,7 @@
 #-*- encoding: utf-8
 require "./danbooru/agent"
 
-module DW
+module DGrab
 
   class Post < Agent
     def initialize()

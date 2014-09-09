@@ -2,7 +2,7 @@
 
 require "rmagick"
 
-module DW
+module DGrab
   
   # 画像関係のヘルパー関数
   module Image
