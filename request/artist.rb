@@ -10,7 +10,7 @@ module DGrab
     end
 
     def listing(params={})
-      uri = @url + "artists.json?"
+      uri = DANBOORU_URL + "artists.json?"
       uri += addParam(params, :limit)
       uri += addParam(params, :page)
       uri += addParam(params, :search_name)

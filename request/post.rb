@@ -24,7 +24,7 @@ module DGrab
     end
 
     def listing(params={})
-      uri = @url + "posts.json?"
+      uri = DANBOORU_URL + "posts.json?"
       uri +=  addParam(params, :page)
       uri +=  addParam(params, :limit)
       uri += _addParam(params, :tags)
@@ -33,7 +33,7 @@ module DGrab
     end
 
     def show(id)
-      showID("posts", id)
+      [showID("posts", id)]
     end
 
     DGrab.listing(self)

@@ -9,7 +9,7 @@ module DGrab
     end
 
     def listing(params={})
-      uri = @url + "related_tag.json?"
+      uri = DANBOORU_URL + "related_tag.json?"
       uri += addParams(params, :query)
       uri += addParams(params, :category)
       getJSON(uri)

@@ -7,4 +7,4 @@ require "./request/tag.rb"
 require "./request/tag_implication.rb"
 require "./request/related_tag.rb"
 
-puts DGrab::Post.show(1)
+puts DGrab::Post.show(1).class

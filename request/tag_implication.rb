@@ -9,7 +9,7 @@ module DGrab
     end
 
     def listing(params={})
-      uri = @url + "tag_implications.json?"
+      uri = DANBOORU_URL + "tag_implications.json?"
       uri += addParams(params, :search_name_matches)
       uri += addParams(params, :search_antecedent_name)
       uri += addParams(params, :search_id)

@@ -14,7 +14,7 @@ module DGrab
     end
 
     def listing(params={})
-      uri = @url + "pools.json?"
+      uri = DANBOORU_URL + "pools.json?"
       uri += addParams(params, :search_name_matches)
       uri += addParams(params, :search_description_matches)
       uri += addParams(params, :search_creator_name)
