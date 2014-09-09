@@ -1,0 +1,73 @@
+#-*- encoding: utf-8
+
+require "rmagick"
+
+module DW
+  
+  # 画像関係のヘルパー関数
+  module Image
+
+    # 読み込んだファイルをJPEGに変換する
+    # @params [String] filepath JPEG以外のファイルのパス
+    # @return [String] 新しく生成されたパス
+    # @note JPEGが投げられた場合，JPEGのパスを返す
+    def Convert(filepath)
+      if not File::exist?(filepath) then
+        raise IOError, "Don't exist file: #{filepath}"
+      end
+
+      path, fname = File::split(filepath)
+      ext = File::extname(fname).downcase
+
+      new_path = filepath
+
+      begin
+        image = Magick::Image.read(filepath).first
+      rescue
+        return nil
+      end
+
+      if ext == ".png" or ext == ".gif" then
+        basename = File::basename(fname, ext)
+        new_path = path + "\\" + basename + ".jpg"
+        image.write(new_path)
+      end
+
+      return new_path
+    end
+
+    # 指定したパスのJPEGファイルにタグを追加する
+    # @params [String] path ファイルのパス
+    # @param [String] tags カンマ区切りで書かれたタグの文字列
+    # @param [Array<String>] tags タグの文字列の配列
+    # @note 日本語にも対応
+    def AppendTags(path, tags)
+      if not File::exist?(filepath) then
+        raise IOError, "Don't exist file: #{filepath}"
+      end
+
+      path, fname = File::split(filepath)
+      ext = File::extname(fname).downcase
+
+      if ext != ".jpg" or ext != ".jpeg" then
+        raise IOError, "Don't match extension of JPEG: #{path}"
+      end
+
+      if tags.class == Array then
+        total_tags = tags.join(", ")
+      elsif tags.class == String then
+        total_tags = tags
+      end
+
+      result = system("exiftool #{path} -Keywords=\"#{total_tags}\"")
+
+      if not result then
+        puts "Failed Append Tags: #{total_tags}"
+      end
+      return result
+    end
+
+    module_function :AppendTags
+    module_function :Rename
+  end
+end
