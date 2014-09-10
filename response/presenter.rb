@@ -4,7 +4,7 @@ module DGrab
   module Response
 
     # レスポンスを受け取り，インスタンス作成するクラス
-    class Adapter
+    class Presenter
       def initialize(json, instance_class)
         @json = json
         @instance_class
