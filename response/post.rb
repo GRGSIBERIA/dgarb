@@ -11,6 +11,18 @@ module DGrab
         super(json)
       end
 
+      # ポストのIDを返す
+      # @return [Integer] ポストのID
+      def id
+        @json["id"]
+      end
+
+      # ポストの作成日を返す
+      # @return [String] 作成日
+      def created_at
+        @json["created_at"]
+      end
+
       # タグを返す
       # @param [Symbol] sym 
       # @param [String] sym

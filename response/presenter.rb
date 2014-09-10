@@ -20,17 +20,7 @@ module DGrab
       def json
         @json
       end
-
-      # レスポンスのIDを返す
-      # @return [Integer] レスポンスのID
-      def id
-        @json["id"]
-      end
-
-      def created_at
-        @json["created_at"]
-      end
-
+      
     end
 
   end
