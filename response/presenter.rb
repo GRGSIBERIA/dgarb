@@ -26,7 +26,11 @@ module DGrab
       def id
         @json["id"]
       end
-      
+
+      def created_at
+        @json["created_at"]
+      end
+
     end
 
   end

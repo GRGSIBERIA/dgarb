@@ -1,6 +1,7 @@
 #-*- encoding: utf-8
 
 require "./response/presenter.rb"
+require "./response/object/file.rb"
 
 module DGrab
   module Response
@@ -27,6 +28,10 @@ module DGrab
           :copyright => @json["tag_string_copyright"].split(" "),
           :general => @json["tag_string_general"].split(" ")
         }
+      end
+
+      def file
+        DGrab::Response::Object::File.new(json)
       end
 
       # お気に入り登録しているユーザIDを返す
@@ -57,6 +62,26 @@ module DGrab
       # @return [Boolean] 子ポストが存在するか
       def active_children?
         @json["has_active_children"]
+      end
+
+      # 画像のPixivのイラストIDを返す
+      # @return [Integer] PixivのイラストID
+      # @note PixivのイラストのIDのこと．nullが戻ることもあり．
+      def pixiv_id
+        @json["pixiv_id"]
+      end
+
+      # ポストのスコアを返す
+      # @return [Hash] スコアのハッシュ
+      # @option [Integer] :all 全体のスコア
+      # @option [Integer] :up イイネ
+      # @option [Integer] :down ダメだね
+      def score
+        {
+          :all => @json["score"],
+          :up => @json["up_score"],
+          :down => @json["down_score"]
+        }
       end
     end
 
