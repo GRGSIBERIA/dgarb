@@ -9,6 +9,13 @@ module DGrab
         @json = json
       end
 
+      def [](sym)
+        @json[sym.to_s]
+      end
+
+      def json
+        @json
+      end
     end
 
   end

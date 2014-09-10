@@ -10,7 +10,7 @@ module DGrab
         class_name = self.to_s.split("::").last
         response = []
         for req in json
-          response << Kernel.const_get("DGrab").const_get("Response").const_get(class_name).new(json)
+          response << Kernel.const_get("DGrab").const_get("Response").const_get(class_name).new(req)
         end
         response
       end

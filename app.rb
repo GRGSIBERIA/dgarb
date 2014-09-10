@@ -8,7 +8,10 @@ require "./request/tag_implication.rb"
 require "./request/related_tag.rb"
 
 require "./response/post.rb"
+require "./response/artist.rb"
+require "./response/pool.rb"
+require "./response/tag.rb"
+require "./response/tag_implication.rb"
+require "./response/related_tag.rb"
 
-#require "./object/tag.rb"
-
-puts DGrab::Post.listing().length
+puts DGrab::Artist.listing().first.json
