@@ -32,10 +32,6 @@ module DGrab
       getJSON(uri)
     end
 
-    def show(id)
-      [showID("posts", id)]
-    end
-
     DGrab.listing(self)
     DGrab.show(self)
 
