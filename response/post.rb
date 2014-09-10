@@ -5,11 +5,14 @@ require "./response/presenter.rb"
 module DGrab
   module Response
 
-    class Post > Presenter
+    class Post < Presenter
       def initialize(json)
-        super(json, DGrab::Instance::Post)
+        super(json)
       end
 
+      def crated_at
+        @json[:created_at]
+      end
     end
 
   end
