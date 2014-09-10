@@ -14,4 +14,4 @@ require "./response/tag.rb"
 require "./response/tag_implication.rb"
 require "./response/related_tag.rb"
 
-puts DGrab::Artist.listing().first.json
+puts DGrab::Post.listing().first.tags
