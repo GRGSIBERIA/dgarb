@@ -28,6 +28,36 @@ module DGrab
           :general => @json["tag_string_general"].split(" ")
         }
       end
+
+      # お気に入り登録しているユーザIDを返す
+      # @return [Array<Integer>] ユーザIDの配列
+      def favorites
+        @json["fav_string"].gsub("fav:", "").split(" ").map{|e| Integer e}
+      end
+
+      # イラストを登録しているプールIDを返す
+      # @return [Array<Integer>] プールIDの配列
+      def pools
+        @json["pool_string"].gsub("pool:", "").split(" ").map{|e| Integer e }
+      end
+
+      # 親ポストのIDを返す
+      # @return [Integer] 親ポストのID
+      def parent
+        @json["parent_id"]
+      end
+
+      # 子ポストが存在するかどうか
+      # @return [Boolean] 子ポストが存在するか
+      def children?
+        @json["has_children"]
+      end
+
+      # アクティブ？な子ポストが存在するかどうか
+      # @return [Boolean] 子ポストが存在するか
+      def active_children?
+        @json["has_active_children"]
+      end
     end
 
   end

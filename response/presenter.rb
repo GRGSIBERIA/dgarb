@@ -21,6 +21,12 @@ module DGrab
         @json
       end
 
+      # レスポンスのIDを返す
+      # @return [Integer] レスポンスのID
+      def id
+        @json["id"]
+      end
+      
     end
 
   end
