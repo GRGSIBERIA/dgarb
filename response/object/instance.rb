@@ -8,7 +8,7 @@ module DGrab
         @keys = keys
         @attribute = {}
 
-        eval_str = "def setup\n"
+        eval_str = "def self.setup\n"
         for key, value in keys
           
           if json[value].class == String then
@@ -17,8 +17,8 @@ module DGrab
               eval_str += "@#{key} = #{json[value]}\n"
           end
           
-          Instance.class_eval %{
-            def #{key}
+          eval %{
+            def self.#{key}
               @#{key}
             end
           }
@@ -26,8 +26,8 @@ module DGrab
           @attribute[key] = json[value]
         end
         eval_str += "end\n"
-        Instance.class_eval eval_str
-        setup
+        eval eval_str
+        self.setup
       end
 
       def [](sym)
