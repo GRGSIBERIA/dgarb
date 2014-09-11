@@ -63,10 +63,7 @@ module DGrab
         string_tags = tags[:all].join(", ")
       end
 
-      puts string_tags
-      puts filepath
-
-      result = system("exiftool -m -Keywords=\"#{string_tags}\" \"#{filepath}\"")
+      result = system("exiftool -m -overwrite_original -Keywords=\"#{string_tags}\" \"#{filepath}\"")
 
       if not result then
         puts "Failed Append Tags: #{string_tags}"

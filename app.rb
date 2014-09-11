@@ -21,5 +21,4 @@ require "./response/object/file.rb"
 a = DGrab::Post.show(1).first
 path = a.file.download("C:\\")
 jpg_path, converted = DGrab::Image.convert(path)
-puts a.tags[:all].length
 DGrab::Image.append_tags(jpg_path, a.tags[:all])
