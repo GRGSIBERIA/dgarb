@@ -18,6 +18,7 @@ require "./response/related_tag.rb"
 
 require "./response/object/file.rb"
 
-a = DGrab::Post.listing().first
+a = DGrab::Post.show(1).first
 path = a.file.download("C:/")
-DGrab::Image.convert(path)
+jpg_path, converted = DGrab::Image.convert(path)
+DGrab::Image.append_tags(jpg_path, a.tags[:all])

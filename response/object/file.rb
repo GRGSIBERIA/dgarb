@@ -36,11 +36,11 @@ module DGrab
           fname = "dgrab_#{@md5}.#{@ext}"
           
           # ディレクトリの後ろにスラッシュを挟む
-          if directory.include?("/")
+          if directory.include?("/") then
             if directory[-1] != "/" then
               directory += "/"
             end
-          elsif directory.include?("\\")
+          elsif directory.include?("\\") then
             if directory[-1] != "\\" then
               directory += "\\"
             end
