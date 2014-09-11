@@ -20,7 +20,8 @@ module DGrab
             md5: "md5",
             preview_url: "preview_file_url",
             source: "source",
-            created_at: "created_at"
+            created_at: "created_at",
+            tags: "tag_string"
           }
           super(json, keys)
         end
@@ -53,6 +54,7 @@ module DGrab
           elsif type == :source then
             DGrab::AGENT.get(@source).save_as(path)
           end
+          path
         end
       end
     end
