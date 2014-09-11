@@ -66,7 +66,7 @@ module DGrab
       puts string_tags
       puts filepath
 
-      result = system("exiftool -Keywords=\"#{string_tags}\" #{filepath}")
+      result = system("exiftool -m -Keywords=\"#{string_tags}\" \"#{filepath}\"")
 
       if not result then
         puts "Failed Append Tags: #{string_tags}"
