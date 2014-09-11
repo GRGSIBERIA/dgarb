@@ -25,6 +25,7 @@ module DGrab
 
           @attribute[key] = json[value]
         end
+        
         eval_str += "end\n"
         eval eval_str
         self.setup

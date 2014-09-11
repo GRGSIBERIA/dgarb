@@ -28,14 +28,30 @@ module DGrab
         # 画像を取得する
         # @param [String] directory 保存先のディレクトリ
         # @param [Symbol] type 取得する画像の種類(:large, :preview, :source)，デフォルトは:large
+        # @param [String] prefix 保存するときにつける接頭辞
         # @note :sourceの場合，存在しないこともあるため注意
-        def download(directory, type=:large)
+        def download(directory, type=:large, prefix="dgrab_")
+          uri = DGrab::DANBOORU_URL
+          fname = "dgrab_#{@md5}.#{@ext}"
+          
+          # ディレクトリの後ろにスラッシュを挟む
+          if directory.include?("/")
+            if directory[-1] != "/" then
+              directory += "/"
+            end
+          elsif directory.include?("\\")
+            if directory[-1] != "\\" then
+              directory += "\\"
+            end
+          end
+
+          path = directory + fname
           if type == :large then
-
+            DGrab::AGENT.get(uri + @large_url[1..-1]).save_as(path)
           elsif type == :preview then
-
+            DGrab::AGENT.get(uri + @preview_url[1..-1]).save_as(path)
           elsif type == :source then
-
+            DGrab::AGENT.get(@source).save_as(path)
           end
         end
       end

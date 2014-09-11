@@ -17,4 +17,4 @@ require "./response/related_tag.rb"
 require "./response/object/file.rb"
 
 a = DGrab::Post.listing().first
-puts a.file.attribute
+puts a.file.download("C:/")
