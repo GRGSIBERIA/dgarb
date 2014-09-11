@@ -1,5 +1,7 @@
 #-*- encoding: utf-8
 
+require "./imaging/helper.rb"
+
 require "./request/post.rb"
 require "./request/artist.rb"
 require "./request/pool.rb"
@@ -17,4 +19,5 @@ require "./response/related_tag.rb"
 require "./response/object/file.rb"
 
 a = DGrab::Post.listing().first
-puts a.file.download("C:/")
+path = a.file.download("C:/")
+DGrab::Image.convert(path)
