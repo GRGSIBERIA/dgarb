@@ -14,4 +14,7 @@ require "./response/tag.rb"
 require "./response/tag_implication.rb"
 require "./response/related_tag.rb"
 
-puts DGrab::Post.listing().first.tags
+require "./response/object/file.rb"
+
+a = DGrab::Post.listing().first
+puts a.file.attribute
