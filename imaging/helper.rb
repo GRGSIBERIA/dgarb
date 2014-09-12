@@ -9,9 +9,10 @@ module DGrab
 
     # 読み込んだファイルをJPEGに変換する
     # @param [String] filepath JPEG以外のファイルのパス
+    # @param [Boolean] is_delete 変換された画像は削除するかどうか
     # @return [Array<String, Boolean>] 新しく生成されたパスと変換の可否を返す
     # @note JPEGが投げられた場合はJPEGのパスを返す．何らかの異常があるとnilが返る．
-    def convert(filepath)
+    def convert(filepath, is_delete=true)
       if not File::exist?(filepath) then
         raise IOError, "Don't exist file: #{filepath}"
       end
@@ -21,7 +22,7 @@ module DGrab
       new_path = filepath
       converted_flag = false
 
-      if ext == ".png" or ext == ".gif" then
+      if ext == ".png" or ext == ".gif" or ext == ".bmp" or ext == ".tga" then
         
         begin
           image = Magick::Image.read(filepath).first
@@ -32,6 +33,12 @@ module DGrab
         basename = File::basename(fname, ext)
         new_path = directory + "\\" + basename + ".jpg"
         image.write(new_path)
+
+        # 変換済みのPNGはいらないと思うので削除^
+        if is_delete then
+          ::File.unlink filepath
+        end
+        
         converted_flag = true
       end
 
