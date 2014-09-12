@@ -56,12 +56,9 @@ module DGrab
           path = directory + fname
           if type == :large then
             save_as.call(path, uri + @large_url[1..-1])
-            #DGrab::AGENT.get(uri + @large_url[1..-1]).save_as(path)
           elsif type == :preview then
-            #DGrab::AGENT.get(uri + @preview_url[1..-1]).save_as(path)
             save_as.call(path, uri + @preview_url[1..-1])
           elsif type == :source then
-            #DGrab::AGENT.get(@source).save_as(path)
             save_as.call(path, @source)
           end
           path
