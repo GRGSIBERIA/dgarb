@@ -55,15 +55,24 @@ module DGrab
         raise IOError, "Don't match extension of JPEG: #{filepath}"
       end
 
+      # ここでtagの型等をチェック
       if tags.class == Array then
         string_tags = tags.join(", ")
       elsif tags.class == String then
         string_tags = tags
       elsif tags.class == Hash then
-        string_tags = tags[:all].join(", ")
+        if tags.has_key?(:all) then
+          string_tags = tags[:all].join(", ")
+        else
+          string_tags = ""
+        end
       end
 
-      result = system("exiftool -m -overwrite_original -Keywords=\"#{string_tags}\" \"#{filepath}\"")
+      if string_tags == "" then
+        result = system("exiftool -m -overwrite_original -Keywords=\"#{string_tags}\" \"#{filepath}\"")
+      else
+        result = true
+      end
 
       if not result then
         puts "Failed Append Tags: #{string_tags}"
