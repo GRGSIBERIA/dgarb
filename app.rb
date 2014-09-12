@@ -20,4 +20,6 @@ require "./response/object/file.rb"
 
 require "./grabbing/get.rb"
 
-puts DGrab::Grabbing.get("G:\\data\\img").length
+DGrab::Grabbing.get("G:\\data\\img", tags: ["suzumiya_haruhi", "bunnysuit"], limit: 10, page: 1..10).each {|post|
+  puts post.tags[:character]
+}

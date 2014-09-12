@@ -35,10 +35,10 @@ module DGrab
         image.write(new_path)
 
         # 変換済みのPNGはいらないと思うので削除^
-        if is_delete then
+        if is_delete and ext != "gif" then
           ::File.unlink filepath
         end
-        
+
         converted_flag = true
       end
 
