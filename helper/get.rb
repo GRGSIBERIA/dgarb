@@ -5,7 +5,7 @@ require "./response/post.rb"
 require "./imaging/helper.rb"
 
 module DGrab
-  module Grabbing
+  module Helper
     # 特定のタグから画像を取得する
     # @param [String] directory 保存するフォルダ名
     

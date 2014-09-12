@@ -18,8 +18,8 @@ require "./response/related_tag.rb"
 
 require "./response/object/file.rb"
 
-require "./grabbing/get.rb"
+require "./helper/get.rb"
 
-DGrab::Grabbing.get("G:\\data\\img", tags: ["suzumiya_haruhi", "bunnysuit"], limit: 10, page: 1..10).each {|post|
+DGrab::Helper.get("G:\\data\\img", tags: ["suzumiya_haruhi", "bunnysuit"], limit: 10, page: 1..10).each {|post|
   puts post.tags[:character]
 }
