@@ -42,18 +42,15 @@ module DGrab
     # @param [String] filepath ファイルのパス
     # @param [String] tags カンマ区切りで書かれたタグの文字列
     # @param [Array<String>] tags タグの配列
-    # @note 日本語にも対応
+    # @return [Symbol] trueは正常に終了，
+    # @note 日本語にも対応，戻り値は無視しても構わない
     def append_tags(filepath, tags)
       if not File::exist?(filepath) then
-        raise IOError, "Don't exist file: #{filepath}"
+        return :do_not_exist_file
       end
 
       directory, fname = File::split(filepath)
       ext = File::extname(fname).downcase
-
-      if ext != ".jpg" and ext != ".jpeg" then
-        raise IOError, "Don't match extension of JPEG: #{filepath}"
-      end
 
       # ここでtagの型等をチェック
       if tags.class == Array then
@@ -68,16 +65,9 @@ module DGrab
         end
       end
 
-      if string_tags == "" then
+      if string_tags != "" and (ext == ".jpg" or ext == ".jpeg") then
         result = system("exiftool -m -overwrite_original -Keywords=\"#{string_tags}\" \"#{filepath}\"")
-      else
-        result = true
       end
-
-      if not result then
-        puts "Failed Append Tags: #{string_tags}"
-      end
-      return result
     end
 
     module_function :append_tags
