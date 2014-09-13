@@ -21,6 +21,7 @@ require "./response/object/file.rb"
 require "./helper/config.rb"
 require "./helper/get_image.rb"
 require "./helper/mongo.rb"
+require "./helper/get_json.rb"
 
 require "optparse"
 
@@ -51,5 +52,8 @@ DGrab::Helper.import_config(args[:config])
 # 画像の取得はこれ
 #DGrab::Helper.get_image(tags: ["suzumiya_haruhi", "bunnysuit"], limit: 2, page: 0..1)
 
-mongo = DGrab::Helper::Mongo.new
-mongo.post
+#puts DGrab::Helper.get_json(DGrab::Request::Post, :listing, {limit: 100, tags: ["suzumiya_haruhi"]})
+puts DGrab::Request::Post.listing(limit: 100, page: 0..2, tags: ["suzumiya_haruhi"])
+
+#mongo = DGrab::Helper::Mongo.new
+#mongo.post
