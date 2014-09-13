@@ -1,23 +1,38 @@
 #-*- encoding: utf-8
 
 require "yaml"
+require "active_support"
 
 module DGrab
 
   module Helper
 
+    # 設定ファイルクラス
     class Config
-      attr_accessor :db_path, :img_path, :username, :password
+      attr_accessor :db_dir, :img_dir, :username, :password
 
       def initialize()
 
       end
 
       def init(yaml)
-        @db_path = yaml[:db_path]
-        @img_path = yaml[:img_path]
+        @db_dir = yaml[:db_dir]
+        @img_dir = yaml[:img_dir]
         @username = yaml[:username]
         @password = yaml[:password]
+        @provider = yaml[:provider]
+        @db_dir ||= "./"
+        @img_dir ||= "./img"
+        @password ||= ""
+        @username ||= ""
+        @provider ||= "Danbooru"
+
+        if not @username.empty? and not @password.empty? then
+          # ここで一度Providerでログイン処理する
+          if @provider == "Danbooru" then
+
+          end
+        end
       end
 
       def Config.init(yaml_path)
@@ -25,10 +40,9 @@ module DGrab
 
         CONFIG.init(yaml)
       end
-
-
     end
 
+    # 設定重要なのでグローバルに
     CONFIG = Config.new
 
     # コンフィグを読み込む
