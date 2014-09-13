@@ -19,7 +19,7 @@ require "./response/related_tag.rb"
 require "./response/object/file.rb"
 
 require "./helper/config.rb"
-require "./helper/get.rb"
+require "./helper/get_image.rb"
 
 require "optparse"
 

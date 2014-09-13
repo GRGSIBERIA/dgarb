@@ -16,7 +16,7 @@ module DGrab
     # @option params [Array<String>] :options 検索クエリのオプション
     # @return [Array<DGrab::Response::Post>] 取得した結果を全て返す
     # @see params[:options]については，ここ参照（https://danbooru.donmai.us/wiki_pages/43049）
-    def get(params={})
+    def get_image(params={})
       directory = DGrab::Helper::CONFIG.img_dir
       limit = params[:limit]
       page = params[:page]
@@ -33,6 +33,7 @@ module DGrab
 
       result_posts = []
 
+      # ページごとにlimitの数だけ画像を取得する
       for page_num in page
 
         posts = DGrab::Request::Post.listing(page: page_num, limit: limit, tags: query)
