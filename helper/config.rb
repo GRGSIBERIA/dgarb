@@ -12,7 +12,7 @@ module DGrab
 
     # 設定ファイルクラス
     class Config
-      attr_accessor :db_dir, :img_dir, :username
+      attr_accessor :img_dir, :username
 
       def initialize()
 
@@ -22,12 +22,10 @@ module DGrab
         f = File.open(yaml_path, "r")
         yaml = YAML.load(f)
 
-        @db_dir = yaml["db_dir"]
         @img_dir = yaml["img_dir"]
         @provider = yaml["provider"]
         @api_key = yaml["api_key"]
         @username = yaml["username"]
-        @db_dir ||= "./"
         @img_dir ||= "./img"
         @provider ||= "Danbooru"
         @api_key ||= ""

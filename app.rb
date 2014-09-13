@@ -41,8 +41,8 @@ args = get_options
 
 if DEBUG == 1 then
   args[:config] = "J:\\Research\\dgrab\\config.yaml"
-  args[:dbpath] = "J:\\Research\\dgrab\\db"
-  args[:imgpath] = "J:\\Research\\dgrab\\img"
+  #args[:imgpath] = "J:\\Research\\dgrab\\img"
+  args[:imgpath] = "G:\\data\\img"
 end
 
 # 設定の読み込みをここで行う
@@ -55,17 +55,17 @@ DGrab::Helper.import_config(args[:config])
 #responses = DGrab::Request::Post.listing(limit: 100, page: 0..9, tags: ["suzumiya_haruhi", "order:id"])
 
 # JSONだけの取得はこれ(pageをIntegerで指定する場合)
-responses = DGrab::Request::Post.listing(limit: 10, page: 9, tags: ["suzumiya_haruhi", "order:id"])
+#responses = DGrab::Request::Post.listing(limit: 10, page: 9, tags: ["suzumiya_haruhi", "order:id"])
 
 # MongoDBを扱いたいときはこれ
-mongo = DGrab::Helper::Mongo.new
+#mongo = DGrab::Helper::Mongo.new
 
 # 第3引数でDBに保存しておきたいパラメータを指定
-mongo.insert("posts", responses, [
-  :id, :created_at, :score,
-  :md5, :tag_string, :file_ext,
-  :tag_string_artist, :tag_string_copyright, :tag_string_character,
-  :fav_count, :large_file_url])
+#mongo.insert("posts", responses, [
+#  :id, :created_at, :score,
+#  :md5, :tag_string, :file_ext,
+#  :tag_string_artist, :tag_string_copyright, :tag_string_character,
+#  :fav_count, :large_file_url])
 
 # MongoDBに追加されてるか確認を取る
 #post = mongo.collection("posts")
