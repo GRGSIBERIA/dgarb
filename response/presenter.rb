@@ -15,12 +15,8 @@ module DGrab
         @json[sym.to_s]
       end
 
-      # JSONオブジェクトを返す
-      # @return [Hash] JSONオブジェクト
-      def json
-        @json
-      end
-      
+      attr_reader :json
+
     end
 
   end

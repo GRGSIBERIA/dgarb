@@ -24,13 +24,30 @@ module DGrab
         uri
       end
 
-      def listing(params={})
+      def _createURI(params)
         uri = DANBOORU_URL + "posts.json?"
         uri +=  addParam(params, :page)
         uri +=  addParam(params, :limit)
         uri += _addParam(params, :tags)
         uri +=  addParam(params, :raw)
-        getJSON(uri)
+        uri
+      end
+
+      def listing(params={})
+        result = nil
+        if params[:page].class == Range then  # 範囲オブジェクトかどうかで処理を切り分ける
+          result = []
+          range = params[:page]
+          for i in range
+            params[:page] = i
+            uri = _createURI(params)
+            result += getJSON(uri)
+          end
+        else
+          uri = _createURI(params)
+          result = getJSON(uri)
+        end
+        result
       end
 
       def show(id)

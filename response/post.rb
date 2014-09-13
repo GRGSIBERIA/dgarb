@@ -24,7 +24,7 @@ module DGrab
       end
 
       # タグを返す
-      # @param [Symbol] sym 
+      # @param [Symbol] sym
       # @param [String] sym
       # @return [Hash]
       # @option [Array<String>] :all 全てのタグ
@@ -50,6 +50,12 @@ module DGrab
       # @return [Array<Integer>] ユーザIDの配列
       def favorites
         @json["fav_string"].gsub("fav:", "").split(" ").map{|e| Integer e}
+      end
+
+      # お気に入りの数を返す
+      # @return [Integer] お気に入りの数
+      def fav_count
+        @json["fav_count"]
       end
 
       # イラストを登録しているプールIDを返す

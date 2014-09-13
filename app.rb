@@ -21,7 +21,6 @@ require "./response/object/file.rb"
 require "./helper/config.rb"
 require "./helper/get_image.rb"
 require "./helper/mongo.rb"
-require "./helper/get_json.rb"
 
 require "optparse"
 
@@ -52,8 +51,19 @@ DGrab::Helper.import_config(args[:config])
 # 画像の取得はこれ
 #DGrab::Helper.get_image(tags: ["suzumiya_haruhi", "bunnysuit"], limit: 2, page: 0..1)
 
-#puts DGrab::Helper.get_json(DGrab::Request::Post, :listing, {limit: 100, tags: ["suzumiya_haruhi"]})
-puts DGrab::Request::Post.listing(limit: 100, page: 0..2, tags: ["suzumiya_haruhi"])
+# JSONだけの取得はこれ(pageをRangeで指定する場合)
+#responses = DGrab::Request::Post.listing(limit: 100, page: 0..9, tags: ["suzumiya_haruhi", "order:id"])
 
-#mongo = DGrab::Helper::Mongo.new
-#mongo.post
+# JSONだけの取得はこれ(pageをIntegerで指定する場合)
+responses = DGrab::Request::Post.listing(limit: 10, page: 9, tags: ["suzumiya_haruhi", "order:id"])
+
+# MongoDBを扱いたいときはこれ
+mongo = DGrab::Helper::Mongo.new
+mongo.insert("posts", responses, [
+  :id, :created_at, :score,
+  :md5, :tag_string, :file_ext,
+  :tag_string_artist, :tag_string_copyright, :tag_string_character,
+  :fav_count, :large_file_url])
+
+post = mongo.collection("posts")
+post.find.each { |r| puts r.inspect }
