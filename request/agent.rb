@@ -3,6 +3,7 @@ require "json"
 
 require "./request/helper.rb"
 require "./request/const.rb"
+require "./helper/config.rb"
 
 module DGrab
 
@@ -33,7 +34,10 @@ module DGrab
       end
 
       def getJSON(uri)
-        JSON::parse(AGENT.get(uri).body)
+        # Authorizationで
+        JSON::parse(AGENT.get(uri, {
+          "Authorization" => DGrab::Helper::CONFIG.basic_auth
+        }).body)
       end
 
       def showID(apiName, id)

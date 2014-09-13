@@ -49,7 +49,9 @@ module DGrab
 
           save_as = lambda { |path, url|
             ::File.open(path, "wb") { |f|
-              f.write(DGrab::Request::AGENT.get(url).body)
+              f.write(DGrab::Request::AGENT.get(url, {
+                "Authorization" => DGrab::Helper::CONFIG.basic_auth
+                }).body)
               f.close
             }
           }
