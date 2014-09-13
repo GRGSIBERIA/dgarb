@@ -9,6 +9,8 @@ module DGrab
 
   module Request
     class Agent
+      include DGrab::Helper
+
       def initialize()
 
       end
@@ -34,7 +36,12 @@ module DGrab
       end
 
       def getJSON(uri)
-        json = JSON::parse(AGENT.get(uri).body)
+        uri = URI.escape(uri[0..-2])
+        if CONFIG.authorize then
+          JSON::parse(AGENT.get(uri + "&login=#{CONFIG.username}", {api_key: CONFIG.api_key}).body)
+        else
+          JSON::parse(AGENT.get(uri).body)
+        end
       end
 
       def showID(apiName, id)

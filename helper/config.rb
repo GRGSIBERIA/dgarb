@@ -4,7 +4,7 @@ require "./request/const.rb"
 
 require "yaml"
 require "mechanize"
-require "base64"
+require "bcrypt"
 
 module DGrab
 
@@ -12,7 +12,7 @@ module DGrab
 
     # 設定ファイルクラス
     class Config
-      attr_accessor :img_dir, :username
+      attr_reader :img_dir, :username, :authorize, :api_key
 
       def initialize()
 
@@ -26,20 +26,16 @@ module DGrab
         @provider = yaml["provider"]
         @api_key = yaml["api_key"]
         @username = yaml["username"]
+
         @img_dir ||= "./img"
         @provider ||= "Danbooru"
         @api_key ||= ""
         @username ||= ""
-
-        if not @api_key.empty? and not @username.empty? then
-          @auth = Base64.encode64("#{@username}:#{@api_key}") + "=="
-          @auth.encode!("utf-8")
+        @authorize = false
+        if @api_key != "" then
+          @authorize = true
+          @api_key = BCrypt::Password.create(@api_key)
         end
-        @auth ||= ""
-      end
-
-      def basic_auth
-        "Basic #{@auth}"
       end
 
       def Config.init(yaml_path)
