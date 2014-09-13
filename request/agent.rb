@@ -41,7 +41,7 @@ module DGrab
       end
 
       def showID(apiName, id)
-        uri = DANBOORU_URL + "#{apiName}/#{id}.json"
+        uri = DANBOORU_URL + URI.encode("#{apiName}/#{id}.json")
         getJSON(uri)
       end
 

@@ -13,7 +13,7 @@ module DGrab
         uri = ""
         if params.has_key?(typename) then
           if typename == :tags then
-            if params[typename].class == "array" then
+            if params[typename].class == Array then
               uri = typename.to_s + "=#{params[typename].join(" ")}"
             else
               uri = typename.to_s + "=#{params[typename]}"
