@@ -35,4 +35,4 @@ RMagickはgemでインストール出来ないため，下記を参照してく�
 MongoDBのインストール方法は下記を参照してください．
 [第1回　使ってみようMongoDB](http://gihyo.jp/dev/serial/01/mongodb/0001?page=3)
 
-また，MongoDBサーバを自動的に起動するため，mongod.exeまでのパスを通す必要があります．
+また，MongoDBを利用する際は，事前にmongod.exeを起動してください．mongod.exeが起動していない場合，システムが例外で落ちます．
