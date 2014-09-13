@@ -33,7 +33,7 @@ module DGrab
         # @param [String] prefix 保存するときにつける接頭辞
         # @note :sourceの場合，存在しないこともあるため注意
         def download(directory, type=:large, prefix="dgrab_")
-          uri = DGrab::DANBOORU_URL
+          uri = DGrab::Request::DANBOORU_URL
           fname = "dgrab_#{@md5}.#{@ext}"
 
           # ディレクトリの後ろにスラッシュを挟む
