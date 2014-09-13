@@ -1,26 +1,22 @@
 #-*- encoding: utf-8
 
 require "mongo"
-require "open3"
+
+require "./helper/config.rb"
 
 module DGrab
   module Helper
     # MongoDBのヘルパークラス
     class Mongo
-      def initialize(db_dir)
-        if @@wait_thread == nil then
-          @stdin, @stdout, @stderr, @wait_thread = Open3.popen3("mongod --dbpath \"#{db_dir}\"")
-          @@wait_thread = @wait_thread
-          puts "start mongod"
+      # @param [String] mongo_server MongoDBの接続先サーバ
+      def initialize(mongo_server="localhost")
+        @connection = ::Mongo::Connection.new(mongo_server)
+        @db = @connection.db("dgrab")
 
-          ObjectSpace.define_finalizer(self, self.class.cleanup)
-        end
+        @post = @db.collection('posts')
       end
 
-      def self.cleanup
-        @@wait_thread.value.exitstatus
-        puts "shutdown mongod"
-      end
+      attr_reader :db, :post
     end
   end
 end
