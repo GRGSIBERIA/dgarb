@@ -1,6 +1,7 @@
 #-*- encoding: utf-8
 
 require "./response/object/instance.rb"
+require "./request/const.rb"
 
 module DGrab
   module Response
@@ -34,7 +35,7 @@ module DGrab
         def download(directory, type=:large, prefix="dgrab_")
           uri = DGrab::DANBOORU_URL
           fname = "dgrab_#{@md5}.#{@ext}"
-          
+
           # ディレクトリの後ろにスラッシュを挟む
           if directory.include?("/") then
             if directory[-1] != "/" then
@@ -46,9 +47,9 @@ module DGrab
             end
           end
 
-          save_as = lambda { |path, url| 
+          save_as = lambda { |path, url|
             ::File.open(path, "wb") { |f|
-              f.write(DGrab::AGENT.get(url).body)
+              f.write(DGrab::Request::AGENT.get(url).body)
               f.close
             }
           }
