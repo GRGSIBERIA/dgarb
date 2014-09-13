@@ -8,7 +8,7 @@ module DGrab
   module Helper
     # 特定のタグから画像を取得する
     # @param [String] directory 保存するフォルダ名
-    
+
     # @param [Hash] params その他のパラメータ，指定なしだとデフォルト
     # @option params [Array<String>] :tags タグの配列
     # @option params [Integer] :limit APIの1リクエストあたりで取得する数
@@ -32,9 +32,9 @@ module DGrab
 
       result_posts = []
 
-      for page_num in page 
+      for page_num in page
 
-        posts = DGrab::Post.listing(page: page_num, limit: limit, tags: query)
+        posts = DGrab::Request::Post.listing(page: page_num, limit: limit, tags: query)
 
         if posts.length == 0 then
           break   # 何も取得できなかったら脱出する
