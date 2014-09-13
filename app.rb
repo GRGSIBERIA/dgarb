@@ -21,12 +21,27 @@ require "./response/object/file.rb"
 require "./helper/config.rb"
 require "./helper/get.rb"
 
-#
-DGrab::Helper.import_config
+require "optparse"
 
-#DGrab::Helper.get("J:\\Research\\dgrab\\img", tags: ["suzumiya_haruhi", "bunnysuit"], limit: 10, page: 0..1).each {|post|
-#  puts post.tags[:character]
-#}
+DEBUG = 1
 
+def get_options
+  args = {}
+  OptionParser.new do |parser|
+    parser.on('-c', '--config CONFIG_PATH', '設定ファイルのパス') {|v| args[:config] = v}
+  end
 
+  args[:config] = "./config.yaml"   # デフォルトのコンフィグの位置
+  args
+end
 
+args = get_options
+
+if DEBUG == 1 then
+  args[:config] = "J:\\Research\\dgrab\\config.yaml"
+end
+
+# 設定の読み込みをここで行う
+DGrab::Helper.import_config(args[:config])
+
+DGrab::Helper.get(tags: ["suzumiya_haruhi", "bunnysuit"], limit: 2, page: 0..1)
