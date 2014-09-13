@@ -9,8 +9,6 @@ require "./helper/config.rb"
 module DGrab
   module Helper
     # 特定のタグから画像を取得する
-    # @param [String] directory 保存するフォルダ名
-
     # @param [Hash] params その他のパラメータ，指定なしだとデフォルト
     # @option params [Array<String>] :tags タグの配列
     # @option params [Integer] :limit APIの1リクエストあたりで取得する数
@@ -18,7 +16,8 @@ module DGrab
     # @option params [Array<String>] :options 検索クエリのオプション
     # @return [Array<DGrab::Response::Post>] 取得した結果を全て返す
     # @see params[:options]については，ここ参照（https://danbooru.donmai.us/wiki_pages/43049）
-    def get(directory, params={})
+    def get(params={})
+      directory = DGrab::Helper::CONFIG.img_dir
       limit = params[:limit]
       page = params[:page]
       tags = params[:tags]
