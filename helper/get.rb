@@ -4,6 +4,8 @@ require "./request/post.rb"
 require "./response/post.rb"
 require "./imaging/helper.rb"
 
+require "./helper/config.rb"
+
 module DGrab
   module Helper
     # 特定のタグから画像を取得する
