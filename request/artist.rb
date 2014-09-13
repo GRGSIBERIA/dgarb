@@ -28,8 +28,8 @@ module DGrab
         showID("artists", id)
       end
 
-      DGrab.listing(self)
-      DGrab.show(self)
+      DGrab::Request.listing(self)
+      DGrab::Request.show(self)
 
     end
   end

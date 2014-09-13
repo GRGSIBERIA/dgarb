@@ -20,6 +20,6 @@ require "./response/object/file.rb"
 
 require "./helper/get.rb"
 
-DGrab::Helper.get("G:\\data\\img", tags: ["suzumiya_haruhi", "bunnysuit"], limit: 10, page: 1..10).each {|post|
+DGrab::Helper.get("J:\\Research\\dgrab\\img", tags: ["suzumiya_haruhi", "bunnysuit"], limit: 10, page: 0..1).each {|post|
   puts post.tags[:character]
 }

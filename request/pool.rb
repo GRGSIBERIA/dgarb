@@ -26,8 +26,8 @@ module DGrab
         getJSON(uri)
       end
 
-      DGrab.listing(self)
-      DGrab.show(self)
+      DGrab::Request.listing(self)
+      DGrab::Request.show(self)
 
     end
   end

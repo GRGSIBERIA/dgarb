@@ -37,8 +37,8 @@ module DGrab
         showID("posts", id)
       end
 
-      DGrab.listing(self)
-      DGrab.show(self)
+      DGrab::Request.listing(self)
+      DGrab::Request.show(self)
 
     end
   end
