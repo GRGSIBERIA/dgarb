@@ -40,8 +40,9 @@ end
 args = get_options
 
 if DEBUG == 1 then
-  args[:config] = "J:\\Research\\dgrab\\config.yaml"
+  #args[:config] = "J:\\Research\\dgrab\\config.yaml"
   #args[:imgpath] = "J:\\Research\\dgrab\\img"
+  args[:config] = "G:\\data\\config.yaml"
   args[:imgpath] = "G:\\data\\img"
 end
 

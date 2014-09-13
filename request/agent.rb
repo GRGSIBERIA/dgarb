@@ -34,10 +34,7 @@ module DGrab
       end
 
       def getJSON(uri)
-        # AuthorizationでBASIC認証をしてる
-        json = JSON::parse(AGENT.get(uri, {
-          "Authorization" => DGrab::Helper::CONFIG.basic_auth
-        }).body)
+        json = JSON::parse(AGENT.get(uri).body)
       end
 
       def showID(apiName, id)
