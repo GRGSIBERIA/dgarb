@@ -25,9 +25,11 @@ module DGrab
       # @param [String] collection_name コレクション名
       # @param [Array<DGrab::Response::Presenter>] 結果の配列
       # @param [Array<Symbol>] JSONでレコードに保存しておきたいパラメータ名
+      # @return [Integer] 実際にinsertされたレコード数
       def insert(collection_name, objects, include_params)
         collection = @db.collection(collection_name)
 
+        record_count = 0
         for obj in objects
           insert_item = {}
 
@@ -36,8 +38,10 @@ module DGrab
               insert_item[incparam] = obj[incparam]
             end
             collection.insert(insert_item)
+            record_count += 1
           end
         end
+        record_count
       end
 
       attr_reader :db
