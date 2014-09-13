@@ -53,6 +53,6 @@ module DGrab
       result_posts
     end
 
-    module_function :get
+    module_function :get_image
   end
 end

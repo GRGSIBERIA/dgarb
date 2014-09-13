@@ -15,7 +15,7 @@ Danbooruによって管理されているタグ情報を，手元の画像へ反
 このシステムによって，タグ情報の代わりにフォルダで管理するような手間を省き，なおかつPicasaの強力な画像検索機能を利用することが可能となります．
 
 # 動作環境
-画像の変換のためにRMagicと，EXIFにタグ情報を追記するためExifToolを利用しています．
+画像の変換のためにRMagicと，EXIFにタグ情報を追記するためExifToolを利用しています．また，クロールした情報を保存するためにMongoDBを使用しています．
 
 ## RMagick
 RMagickはgemでインストール出来ないため，下記を参照してください．
@@ -27,3 +27,12 @@ RMagickはgemでインストール出来ないため，下記を参照してく�
 なお，System32にExifToolをインストールするとエラーが出るため，他のフォルダへ移してパスを通してください．
 
 [Installing ExifTool](http://www.sno.phy.queensu.ca/~phil/exiftool/install.html#Windows)
+
+## MongoDB
+クロールした情報を保存したい場合はMongoDBを利用します．
+ダウンロードした画像にタグ付けするだけであれば，MongoDBの必要はありません．
+
+MongoDBのインストール方法は下記を参照してください．
+[第1回　使ってみようMongoDB](http://gihyo.jp/dev/serial/01/mongodb/0001?page=3)
+
+また，MongoDBサーバを自動的に起動するため，mongod.exeまでのパスを通す必要があります．

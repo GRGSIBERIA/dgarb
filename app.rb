@@ -20,6 +20,7 @@ require "./response/object/file.rb"
 
 require "./helper/config.rb"
 require "./helper/get_image.rb"
+require "./helper/mongo.rb"
 
 require "optparse"
 
@@ -44,4 +45,7 @@ end
 # 設定の読み込みをここで行う
 DGrab::Helper.import_config(args[:config])
 
-DGrab::Helper.get_image(tags: ["suzumiya_haruhi", "bunnysuit"], limit: 2, page: 0..1)
+# 画像の取得はこれ
+#DGrab::Helper.get_image(tags: ["suzumiya_haruhi", "bunnysuit"], limit: 2, page: 0..1)
+
+
