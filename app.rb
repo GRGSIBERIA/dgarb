@@ -59,11 +59,14 @@ responses = DGrab::Request::Post.listing(limit: 10, page: 9, tags: ["suzumiya_ha
 
 # MongoDBを扱いたいときはこれ
 mongo = DGrab::Helper::Mongo.new
+
+# 第3引数でDBに保存しておきたいパラメータを指定
 mongo.insert("posts", responses, [
   :id, :created_at, :score,
   :md5, :tag_string, :file_ext,
   :tag_string_artist, :tag_string_copyright, :tag_string_character,
   :fav_count, :large_file_url])
 
-post = mongo.collection("posts")
-post.find.each { |r| puts r.inspect }
+# MongoDBに追加されてるか確認を取る
+#post = mongo.collection("posts")
+#post.find.each { |r| puts r.inspect }

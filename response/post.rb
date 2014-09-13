@@ -11,6 +11,15 @@ module DGrab
         super(json)
       end
 
+      # 取得に成功したかどうか
+      # @return [Boolean] 取得の可否
+      def success?
+        if @json["success"] == false then
+          return false
+        end
+        true
+      end
+
       # ポストのIDを返す
       # @return [Integer] ポストのID
       def id

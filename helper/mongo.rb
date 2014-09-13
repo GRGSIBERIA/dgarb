@@ -8,26 +8,35 @@ module DGrab
   module Helper
     # MongoDBのヘルパークラス
     class Mongo
+
       # @param [String] mongo_server MongoDBの接続先サーバ
       def initialize(mongo_server="localhost")
         @connection = ::Mongo::Connection.new(mongo_server)
         @db = @connection.db("dgrab")
       end
 
+      # コレクションを取得
+      # @param [String] collection_name コレクション名
       def collection(collection_name)
         @db.collection(collection_name)
       end
 
+      # レコードを一度に挿入する
+      # @param [String] collection_name コレクション名
+      # @param [Array<DGrab::Response::Presenter>] 結果の配列
+      # @param [Array<Symbol>] JSONでレコードに保存しておきたいパラメータ名
       def insert(collection_name, objects, include_params)
         collection = @db.collection(collection_name)
 
         for obj in objects
           insert_item = {}
-          json = obj
-          for inc in include_params
-            insert_item[inc] = json[inc]
+
+          if obj.success? then
+            for incparam in include_params
+              insert_item[incparam] = obj[incparam]
+            end
+            collection.insert(insert_item)
           end
-          collection.insert(insert_item)
         end
       end
 

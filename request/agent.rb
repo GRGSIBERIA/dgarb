@@ -34,8 +34,8 @@ module DGrab
       end
 
       def getJSON(uri)
-        # Authorizationで
-        JSON::parse(AGENT.get(uri, {
+        # AuthorizationでBASIC認証をしてる
+        json = JSON::parse(AGENT.get(uri, {
           "Authorization" => DGrab::Helper::CONFIG.basic_auth
         }).body)
       end
