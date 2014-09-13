@@ -1,6 +1,9 @@
 #-*- encoding: utf-8
 
+require "./request/const.rb"
+
 require "yaml"
+require "pp"
 
 module DGrab
 
@@ -14,12 +17,15 @@ module DGrab
 
       end
 
-      def init(yaml)
-        @db_dir = yaml[:db_dir]
-        @img_dir = yaml[:img_dir]
-        @username = yaml[:username]
-        @password = yaml[:password]
-        @provider = yaml[:provider]
+      def init(yaml_path)
+        f = File.open(yaml_path, "r")
+        yaml = YAML.load(f)
+
+        @db_dir = yaml["db_dir"]
+        @img_dir = yaml["img_dir"]
+        @username = yaml["username"].to_s
+        @password = yaml["password"].to_s
+        @provider = yaml["provider"]
         @db_dir ||= "./"
         @img_dir ||= "./img"
         @password ||= ""
@@ -29,15 +35,22 @@ module DGrab
         if not @username.empty? and not @password.empty? then
           # ここで一度Providerでログイン処理する
           if @provider == "Danbooru" then
+            page = DGrab::Request::AGENT.get("https://danbooru.donmai.us/session/new")
+            result = page.form_with(:class => "simple_form") {|form|
+              form.name = @username.toutf8
+              form.password = @password.toutf8
+              puts form.name, form.password
+            }.submit
 
+            if result.body.include?("Password was incorrect.") then
+              raise ArgumentError, "ログインに失敗しました"
+            end
           end
         end
       end
 
       def Config.init(yaml_path)
-        yaml = YAML.load_file(yaml_path)
-
-        CONFIG.init(yaml)
+        CONFIG.init(yaml_path)
       end
     end
 
