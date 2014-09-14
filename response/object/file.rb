@@ -33,8 +33,16 @@ module DGrab
         # @param [String] prefix 保存するときにつける接頭辞
         # @note :sourceの場合，存在しないこともあるため注意
         def download(directory, type=:large, prefix="dgrab_")
+          fail_check = lambda {|path|
+            if path.include?("http://") then
+              return nil
+            end
+          }
+
           uri = DGrab::Request::DANBOORU_URL
           fname = "dgrab_#{@md5}.#{@ext}"
+
+          fail_check.call(fname)
 
           # ディレクトリの後ろにスラッシュを挟む
           if directory.include?("/") then

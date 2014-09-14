@@ -42,13 +42,20 @@ module DGrab
           break   # 何も取得できなかったら脱出する
         end
 
+        result_buffer = []
+
         for post in posts
           path = post.file.download(directory)
-          jpg_path, convert_flag = DGrab::Image.convert(path)
-          DGrab::Image.append_tags(jpg_path, post.tags[:all])
+
+          # 無効なパスが投げられている場合は回避する
+          if not path.nil? then
+            jpg_path, convert_flag = DGrab::Image.convert(path)
+            DGrab::Image.append_tags(jpg_path, post.tags[:all])
+            result_buffer << post
+          end
         end
 
-        result_posts += posts
+        result_posts += result_buffer
       end
       result_posts
     end
