@@ -47,7 +47,7 @@ if DEBUG == 1 then
 end
 
 # 設定の読み込みをここで行う
-DGrab::Helper.import_config(args[:config])
+#DGrab::Helper.import_config(args[:config])
 
 # 画像の取得はこれ
 #DGrab::Helper.get_image(tags: ["suzumiya_haruhi", "bunnysuit"], limit: 2, page: 0..1)
