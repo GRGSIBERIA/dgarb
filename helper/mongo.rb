@@ -34,9 +34,11 @@ module DGrab
           insert_item = {}
 
           if obj.success? then
+            # include_paramsで指定した内容のみ抜き出す
             for incparam in include_params
               insert_item[incparam] = obj[incparam]
             end
+
             collection.insert(insert_item)
             record_count += 1
           end
