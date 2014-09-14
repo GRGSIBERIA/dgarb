@@ -1,6 +1,6 @@
 #-*- encoding: utf-8
 
-require "./request/const.rb"
+#require "./request/const.rb"
 
 require "yaml"
 require "mechanize"
