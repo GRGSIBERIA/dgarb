@@ -37,11 +37,7 @@ module DGrab
 
       def getJSON(uri)
         uri = URI.escape(uri[0..-2])
-        if CONFIG.authorize then
-          JSON::parse(AGENT.get(uri + "&login=#{CONFIG.username}", {api_key: CONFIG.api_key}).body)
-        else
-          JSON::parse(AGENT.get(uri).body)
-        end
+        JSON.parse(DGrab::Request.get(uri).body)
       end
 
       def showID(apiName, id)
