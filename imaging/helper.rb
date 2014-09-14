@@ -13,7 +13,7 @@ module DGrab
     # @return [Array<String, Boolean>] 新しく生成されたパスと変換の可否を返す
     # @note JPEGが投げられた場合はJPEGのパスを返す．何らかの異常があるとnilが返る．
     def convert(filepath, is_delete=true)
-      if filepath.nil? then
+      if filepath.nil? or filepath.include?("http://") then
         return nil
       end
 
@@ -56,7 +56,7 @@ module DGrab
     # @return [Symbol] trueは正常に終了，
     # @note 日本語にも対応，戻り値は無視しても構わない
     def append_tags(filepath, tags)
-      if filepath.nil? then
+      if filepath.nil? or filepath.include?("http://") then
         return nil
       end
 
