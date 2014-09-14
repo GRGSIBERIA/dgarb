@@ -10,13 +10,10 @@ module DGrab
 
         eval_str = "def self.setup\n"
         for key, value in keys
-          
-          if json[value].class == String then
-              eval_str += "@#{key} = \"#{json[value]}\"\n"
-          else
-              eval_str += "@#{key} = #{json[value]}\n"
-          end
-          
+
+          str = "#{json[value]}".gsub("\"", "\\\"")
+          eval_str += "@#{key} = \"" + str + "\"\n"
+
           eval %{
             def self.#{key}
               @#{key}
@@ -25,7 +22,7 @@ module DGrab
 
           @attribute[key] = json[value]
         end
-        
+
         eval_str += "end\n"
         eval eval_str
         self.setup

@@ -49,6 +49,7 @@ module DGrab
           end
 
           save_as = lambda { |path, url|
+            # なぜかパスの中にhttp://～が含まれるらしいので，削除して対処
             if path.include?("http://") then
               return nil
             end
