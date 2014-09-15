@@ -15,6 +15,7 @@ module DGrab
     AGENT = Mechanize.new
     AGENT.user_agent_alias = "Windows Mozilla"
 
+    # 正直，これ必要なのかどうかわからない件について
     if DGrab::Helper::CONFIG.authorize then
       AGENT.cookie_jar.add(
         DANBOORU_URL[0..-2],
