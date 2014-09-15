@@ -63,10 +63,19 @@ module DGrab
 
           path = directory + fname
           if type == :large then
+            if @large_url.nil? then
+              return nil  # たまにnilになっているものがあるので，その場合は無視する
+            end
             save_as.call(path, uri + @large_url[1..-1])
           elsif type == :preview then
+            if @preview_url.nil? then
+              return nil
+            end
             save_as.call(path, uri + @preview_url[1..-1])
           elsif type == :source then
+            if @source.nil? then
+              return nil
+            end
             save_as.call(path, @source)
           end
           path
