@@ -62,6 +62,11 @@ module DGrab
           }
 
           path = directory + fname
+
+          if uri.nil? then
+            return nil  # こいつらnil多すぎ
+          end
+
           if type == :large then
             if @large_url.nil? then
               return nil  # たまにnilになっているものがあるので，その場合は無視する
