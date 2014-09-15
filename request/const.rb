@@ -21,6 +21,11 @@ module DGrab
         Mechanize::Cookie.new(
           DGrab::Helper::CONFIG.username, DANBOORU_URL[0..2], { api_key: DGrab::Helper::CONFIG.api_key }
           ))
+      AGENT.cookie_jar.add(
+        DANBOORU_URL[0..-2],
+        Mechanize::Cookie.new(
+          DGrab::Helper::CONFIG.username, DANBOORU_URL[0..2], { login: DGrab::Helper::CONFIG.username}
+          ))
     end
   end
 end
