@@ -68,12 +68,12 @@ module DGrab
           end
 
           if type == :large then
-            if @large_url.nil? then
+            if @large_url[1..-1].nil? then
               return nil  # たまにnilになっているものがあるので，その場合は無視する
             end
             save_as.call(path, uri + @large_url[1..-1])
           elsif type == :preview then
-            if @preview_url.nil? then
+            if @preview_url[1..-1].nil? then
               return nil
             end
             save_as.call(path, uri + @preview_url[1..-1])
