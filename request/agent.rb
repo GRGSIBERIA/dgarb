@@ -37,6 +37,10 @@ module DGrab
 
       def getJSON(uri)
         uri = URI.escape(uri[0..-2])
+        if DGrab::Helper::CONFIG.authorize then
+          config = DGrab::Helper::CONFIG
+          uri += "&login=#{config.username}&api_key=#{config.api_key}"
+        end
         JSON.parse(DGrab::Request.get(uri).body)
       end
 

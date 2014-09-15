@@ -34,7 +34,7 @@ module DGrab
         @authorize = false
         if @api_key != "" then
           @authorize = true
-          @api_key = BCrypt::Password.create(@api_key)
+          @api_key = @api_key #BCrypt::Password.create(@api_key)
         end
       end
 
